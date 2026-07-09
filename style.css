@@ -8,7 +8,7 @@ input, select { width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 
 .grid-controls { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
 .btn-primary { width: 100%; padding: 16px; border: none; border-radius: 12px; background: var(--primary); color: white; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
 .btn-success { width: 100%; padding: 16px; border: none; border-radius: 12px; background: #10b981; color: white; font-weight: bold; cursor: pointer; }
-.qr-canvas { background: white; padding: 15px; border-radius: 16px; display: flex; justify-content: center; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+.qr-canvas { background: white; padding: 15px; border-radius: 16px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); width: 280px; height: 280px; overflow: hidden; margin-left: auto; margin-right: auto; }
 .custom-file-upload { display: block; padding: 12px; background: #334155; text-align: center; cursor: pointer; border-radius: 12px; border: 1px dashed #64748b; }
 .error-msg { color: #f87171; font-size: 0.8rem; margin-top: 10px; }
 @media (max-width: 768px) { .generator-grid { grid-template-columns: 1fr; } }
