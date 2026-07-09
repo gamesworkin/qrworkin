@@ -1,4 +1,4 @@
-const qrCode = new QRCodeStyling({ width: 250, height: 250, dotsOptions: { type: "rounded" } });
+const qrCode = new QRCodeStyling({ width: 250, height: 250, dotsOptions: { type: "rounded" } }); 
 qrCode.append(document.getElementById("qrCodeTarget"));
 
 function formatData() {
