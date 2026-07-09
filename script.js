@@ -1,37 +1,32 @@
-const qrCode = new QRCodeStyling({
-    width: 250, height: 250,
-    data: "https://github.com",
-    dotsOptions: { color: "#000000", type: "rounded" },
-    backgroundOptions: { color: "#ffffff" }
-});
-
+const qrCode = new QRCodeStyling({ width: 250, height: 250, dotsOptions: { type: "rounded" } });
 qrCode.append(document.getElementById("qrCodeTarget"));
 
-// Função de Geração
-document.getElementById("generateBtn").addEventListener("click", () => {
-    const text = document.getElementById("qrInput").value;
-    const color = document.getElementById("qrColor").value;
-    const type = document.getElementById("dotType").value;
-    const logoFile = document.getElementById("logoInput").files[0];
+function formatData() {
+    const type = document.getElementById("dataType").value;
+    const val = document.getElementById("qrInput").value;
 
-    let config = {
-        data: text || "https://github.com",
-        dotsOptions: { color: color, type: type },
+    switch(type) {
+        case 'wifi': return `WIFI:T:WPA;S:${val};P:SUA_SENHA;;`; // Simplificado
+        case 'contact': return `BEGIN:VCARD\nVERSION:3.0\nFN:${val}\nEND:VCARD`;
+        case 'location': return `https://www.google.com/maps/search/?api=1&query=${val}`;
+        default: return val;
+    }
+}
+
+document.getElementById("generateBtn").addEventListener("click", () => {
+    const config = {
+        data: formatData(),
+        dotsOptions: { color: document.getElementById("qrColor").value, type: document.getElementById("dotType").value }
     };
 
+    const logoFile = document.getElementById("logoInput").files[0];
     if (logoFile) {
         const reader = new FileReader();
-        reader.onload = (e) => {
-            config.image = e.target.result;
-            qrCode.update(config);
-        };
+        reader.onload = (e) => { config.image = e.target.result; qrCode.update(config); };
         reader.readAsDataURL(logoFile);
     } else {
         qrCode.update(config);
     }
 });
 
-// Função de Download
-document.getElementById("downloadBtn").addEventListener("click", () => {
-    qrCode.download({ name: "qr-workin", extension: "png" });
-});
+document.getElementById("downloadBtn").addEventListener("click", () => qrCode.download({ name: "qr-workin", extension: "png" }));
