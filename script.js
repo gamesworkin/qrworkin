@@ -1,4 +1,4 @@
-// Configuração Inicial do QR
+// Configuração Inicial do QR 
 const qrCode = new QRCodeStyling({
     width: 280,
     height: 280,
