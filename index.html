@@ -2,38 +2,82 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>QR Workin' | Gerador Avançado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Workin' | Professional Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>QR Workin'</h1>
-        <select id="dataType">
-            <option value="url">URL / Texto</option>
-            <option value="wifi">Wi-Fi</option>
-            <option value="contact">Contato (vCard)</option>
-            <option value="location">Localização (Google Maps)</option>
-        </select>
 
-        <div id="inputContainer">
-            <input type="text" id="qrInput" placeholder="Conteúdo...">
-        </div>
+    <div class="background-blobs"></div>
 
-        <div class="controls-grid">
-            <input type="color" id="qrColor" value="#000000">
-            <select id="dotType">
-                <option value="rounded">Arredondado</option>
-                <option value="dots">Pontos</option>
-                <option value="square">Quadrado</option>
-            </select>
-        </div>
-        <input type="file" id="logoInput" accept="image/*">
-        
-        <button id="generateBtn">Gerar QR Code</button>
-        <button id="downloadBtn">Baixar PNG</button>
-        <div id="qrCodeTarget"></div>
-    </div>
-    <script src="https://unpkg.com/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+    <main class="glass-container">
+        <header>
+            <h1>QR Workin<span>'</span></h1>
+            <p>Personalização ilimitada, resultados profissionais.</p>
+        </header>
+
+        <section class="generator-grid">
+            <div class="config-side">
+                <div class="input-group">
+                    <label><i class="fa-solid fa-list-check"></i> Tipo de Conteúdo</label>
+                    <select id="qrType">
+                        <option value="url">Link / Texto Livre</option>
+                        <option value="wifi">Rede Wi-Fi</option>
+                        <option value="vcard">Cartão de Visita (vCard)</option>
+                        <option value="whatsapp">WhatsApp Direct</option>
+                        <option value="location">Localização (GPS)</option>
+                    </select>
+                </div>
+
+                <div id="dynamicInputs" class="dynamic-inputs">
+                    </div>
+
+                <div class="style-options">
+                    <label><i class="fa-solid fa-palette"></i> Design e Estilo</label>
+                    <div class="grid-controls">
+                        <div class="control-item">
+                            <span>Cor Principal</span>
+                            <input type="color" id="dotColor" value="#4f46e5">
+                        </div>
+                        <div class="control-item">
+                            <span>Forma</span>
+                            <select id="dotStyle">
+                                <option value="extra-rounded">Extra Redondo</option>
+                                <option value="rounded">Arredondado</option>
+                                <option value="dots">Pontos</option>
+                                <option value="classy">Clássico</option>
+                                <option value="square">Quadrado</option>
+                            </select>
+                        </div>
+                        <div class="control-item full-width">
+                            <span>Adicionar Logo</span>
+                            <label for="logoUpload" class="custom-file-upload">
+                                <i class="fa-solid fa-cloud-arrow-up"></i> Escolher Imagem
+                            </label>
+                            <input type="file" id="logoUpload" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-side">
+                <div id="qrPreview" class="qr-canvas"></div>
+                <div class="actions">
+                    <button id="generateBtn" class="btn-primary">
+                        <i class="fa-solid fa-sync"></i> Gerar QR Code
+                    </button>
+                    <button id="downloadBtn" class="btn-success">
+                        <i class="fa-solid fa-download"></i> Baixar PNG
+                    </button>
+                </div>
+                <p id="errorMessage" class="error-msg"></p>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
