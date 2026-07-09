@@ -2,30 +2,37 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Workin' | Gerador Completo</title>
+    <title>QR Workin' | Gerador Avançado</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>QR Workin'</h1>
-        <div class="main-content">
-            <input type="text" id="qrInput" placeholder="URL ou texto">
-            <div class="controls-grid">
-                <input type="color" id="qrColor" title="Cor dos pontos" value="#000000">
-                <select id="dotType">
-                    <option value="rounded">Arredondado</option>
-                    <option value="dots">Pontos</option>
-                    <option value="square">Quadrado</option>
-                </select>
-                <input type="file" id="logoInput" accept="image/*">
-            </div>
-            <button id="generateBtn">Gerar e Customizar</button>
-            <button id="downloadBtn">Baixar QR Code</button>
-            <div id="qrCodeTarget"></div>
+        <select id="dataType">
+            <option value="url">URL / Texto</option>
+            <option value="wifi">Wi-Fi</option>
+            <option value="contact">Contato (vCard)</option>
+            <option value="location">Localização (Google Maps)</option>
+        </select>
+
+        <div id="inputContainer">
+            <input type="text" id="qrInput" placeholder="Conteúdo...">
         </div>
+
+        <div class="controls-grid">
+            <input type="color" id="qrColor" value="#000000">
+            <select id="dotType">
+                <option value="rounded">Arredondado</option>
+                <option value="dots">Pontos</option>
+                <option value="square">Quadrado</option>
+            </select>
+        </div>
+        <input type="file" id="logoInput" accept="image/*">
+        
+        <button id="generateBtn">Gerar QR Code</button>
+        <button id="downloadBtn">Baixar PNG</button>
+        <div id="qrCodeTarget"></div>
     </div>
-    
     <script src="https://unpkg.com/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
     <script src="script.js"></script>
 </body>
