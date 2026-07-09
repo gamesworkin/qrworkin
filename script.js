@@ -2,7 +2,7 @@ const qrCode = new QRCodeStyling({
     width: 250, 
     height: 250, 
     dotsOptions: { type: "extra-rounded" },
-    imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 0 } // Ajustes de logo circular
+    imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 0 }
 });
 qrCode.append(document.getElementById("qrPreview"));
 
@@ -38,13 +38,12 @@ function getBaseConfig() {
 
 document.getElementById('generateBtn').addEventListener('click', () => {
     const config = getBaseConfig();
+    config.width = 250;
+    config.height = 250;
     const logoFile = document.getElementById('logoUpload').files[0];
     if (logoFile) {
         const reader = new FileReader();
-        reader.onload = (e) => { 
-            config.image = e.target.result; 
-            qrCode.update(config); 
-        };
+        reader.onload = (e) => { config.image = e.target.result; qrCode.update(config); };
         reader.readAsDataURL(logoFile);
     } else { qrCode.update(config); }
 });
@@ -54,7 +53,6 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
     const config = getBaseConfig();
     const logoFile = document.getElementById('logoUpload').files[0];
     
-    // Atualiza para alta resolução antes do download
     config.width = size;
     config.height = size;
     
@@ -63,11 +61,17 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
         reader.onload = (e) => { 
             config.image = e.target.result;
             qrCode.update(config);
-            setTimeout(() => { qrCode.download({ name: "qr-workin-hq", extension: "png" }); }, 200);
+            setTimeout(() => { 
+                qrCode.download({ name: "qr-workin-hq", extension: "png" }); 
+                qrCode.update({ width: 250, height: 250 }); // Volta ao normal após o clique
+            }, 500);
         };
         reader.readAsDataURL(logoFile);
     } else {
         qrCode.update(config);
-        setTimeout(() => { qrCode.download({ name: "qr-workin-hq", extension: "png" }); }, 200);
+        setTimeout(() => { 
+            qrCode.download({ name: "qr-workin-hq", extension: "png" }); 
+            qrCode.update({ width: 250, height: 250 }); // Volta ao normal
+        }, 500);
     }
 });
