@@ -9,75 +9,48 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="background-blobs"></div>
-
     <main class="glass-container">
         <header>
             <h1>QR Workin<span>'</span></h1>
-            <p>Personalização ilimitada, resultados profissionais.</p>
         </header>
-
         <section class="generator-grid">
             <div class="config-side">
                 <div class="input-group">
-                    <label><i class="fa-solid fa-list-check"></i> Tipo de Conteúdo</label>
+                    <label>Tipo de Conteúdo</label>
                     <select id="qrType">
-                        <option value="url">Link / Texto Livre</option>
+                        <option value="url">Link / Texto</option>
                         <option value="wifi">Rede Wi-Fi</option>
-                        <option value="vcard">Cartão de Visita (vCard)</option>
-                        <option value="whatsapp">WhatsApp Direct</option>
+                        <option value="vcard">Contato (vCard)</option>
+                        <option value="whatsapp">WhatsApp</option>
                         <option value="location">Localização (GPS)</option>
                     </select>
                 </div>
-
-                <div id="dynamicInputs" class="dynamic-inputs">
-                    </div>
-
+                <div id="dynamicInputs" class="dynamic-inputs"></div>
                 <div class="style-options">
-                    <label><i class="fa-solid fa-palette"></i> Design e Estilo</label>
+                    <label>Design</label>
                     <div class="grid-controls">
-                        <div class="control-item">
-                            <span>Cor Principal</span>
-                            <input type="color" id="dotColor" value="#4f46e5">
-                        </div>
-                        <div class="control-item">
-                            <span>Forma</span>
-                            <select id="dotStyle">
-                                <option value="extra-rounded">Extra Redondo</option>
-                                <option value="rounded">Arredondado</option>
-                                <option value="dots">Pontos</option>
-                                <option value="classy">Clássico</option>
-                                <option value="square">Quadrado</option>
-                            </select>
-                        </div>
-                        <div class="control-item full-width">
-                            <span>Adicionar Logo</span>
-                            <label for="logoUpload" class="custom-file-upload">
-                                <i class="fa-solid fa-cloud-arrow-up"></i> Escolher Imagem
-                            </label>
-                            <input type="file" id="logoUpload" accept="image/*">
-                        </div>
+                        <input type="color" id="dotColor" value="#4f46e5">
+                        <select id="dotStyle">
+                            <option value="extra-rounded">Extra Redondo</option>
+                            <option value="rounded">Arredondado</option>
+                            <option value="dots">Pontos</option>
+                            <option value="square">Quadrado</option>
+                        </select>
                     </div>
+                    <label for="logoUpload" class="custom-file-upload">Selecionar Logo</label>
+                    <input type="file" id="logoUpload" accept="image/*" style="display:none">
                 </div>
             </div>
-
             <div class="preview-side">
                 <div id="qrPreview" class="qr-canvas"></div>
-                <div class="actions">
-                    <button id="generateBtn" class="btn-primary">
-                        <i class="fa-solid fa-sync"></i> Gerar QR Code
-                    </button>
-                    <button id="downloadBtn" class="btn-success">
-                        <i class="fa-solid fa-download"></i> Baixar PNG
-                    </button>
-                </div>
+                <button id="generateBtn" class="btn-primary">Gerar QR Code</button>
+                <button id="downloadBtn" class="btn-success">Baixar PNG</button>
                 <p id="errorMessage" class="error-msg"></p>
             </div>
         </section>
     </main>
-
-    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://unpkg.com/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
