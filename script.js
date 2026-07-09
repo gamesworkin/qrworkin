@@ -1,5 +1,5 @@
 const qrCode = new QRCodeStyling({ 
-    width: 250, 
+    width: 250,  
     height: 250, 
     dotsOptions: { type: "extra-rounded" },
     imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 0 }
