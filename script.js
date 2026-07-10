@@ -1,5 +1,5 @@
 const qrCode = new QRCodeStyling({ 
-    width: 250,  
+    width: 250, 
     height: 250, 
     dotsOptions: { type: "extra-rounded" },
     imageOptions: { hideBackgroundDots: true, imageSize: 0.4, margin: 0 }
@@ -48,30 +48,30 @@ document.getElementById('generateBtn').addEventListener('click', () => {
     } else { qrCode.update(config); }
 });
 
-document.getElementById('downloadBtn').addEventListener('click', () => {
+document.getElementById('downloadBtn').addEventListener('click', async () => {
     const size = parseInt(document.getElementById('resSelect').value);
     const config = getBaseConfig();
-    const logoFile = document.getElementById('logoUpload').files[0];
-    
     config.width = size;
     config.height = size;
     
+    const logoFile = document.getElementById('logoUpload').files[0];
+    
     if (logoFile) {
         const reader = new FileReader();
-        reader.onload = (e) => { 
+        reader.onload = async (e) => {
             config.image = e.target.result;
-            qrCode.update(config);
+            await qrCode.update(config);
             setTimeout(() => { 
                 qrCode.download({ name: "qr-workin-hq", extension: "png" }); 
-                qrCode.update({ width: 250, height: 250 }); // Volta ao normal após o clique
-            }, 500);
+                qrCode.update({ width: 250, height: 250 });
+            }, 800);
         };
         reader.readAsDataURL(logoFile);
     } else {
-        qrCode.update(config);
+        await qrCode.update(config);
         setTimeout(() => { 
             qrCode.download({ name: "qr-workin-hq", extension: "png" }); 
-            qrCode.update({ width: 250, height: 250 }); // Volta ao normal
-        }, 500);
+            qrCode.update({ width: 250, height: 250 });
+        }, 800);
     }
 });
